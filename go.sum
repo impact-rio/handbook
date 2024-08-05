@@ -1,0 +1,8 @@
+github.com/McShelby/hugo-theme-relearn v0.0.0-20240721222908-7aec99b38dc2 h1:022HGVq2CBuTftLgNRiU3rxqh+w3M3ZcschnXbjgomc=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20240721222908-7aec99b38dc2/go.mod h1:mKQQdxZNIlLvAj8X3tMq+RzntIJSr9z7XdzuMomt0IM=
+github.com/hugomods/images v0.11.0 h1:njtKxqLmKIRXwzriosh13aj9BK3iBgJXeQFpYXIzQTM=
+github.com/hugomods/images v0.11.0/go.mod h1:U6Gwj16LKvk66rOMyGFrnF6f0aV8lT89lqOsckOAjYY=
+github.com/joksas/hugo-simplecite v0.0.0-20230818125045-f3126a3fc282 h1:JaX4Tunl+e2tmVEWYD1Gbnn6IAhPGKV7zG2gH2GhI38=
+github.com/joksas/hugo-simplecite v0.0.0-20230818125045-f3126a3fc282/go.mod h1:YMtrDxlrAjcludxoj1QQETV5P3SLvxznudsS97DLt18=
+github.com/loup-brun/hugo-cite v1.0.0-beta3 h1:Qh6BkoWZPt0vaVxwMvQSJguT660wImy38sq+Q234tHE=
+github.com/loup-brun/hugo-cite v1.0.0-beta3/go.mod h1:iD1lSrUKaQPD+/MRLxDCpbSOW7fFq3eAIvc29G5Zbag=
