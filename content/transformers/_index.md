@@ -13,14 +13,14 @@ A arquitetura de _transformer_ pode variar dependendo da tarefa a ser desempenha
 A tokenização é o processo de transformar um texto em uma representação semântica compreendido como uma sequência de _tokens_. Os _tokens_ podem ser palavras, fragmentos de palavras, pontuações ou outros grupos de caracteres. O conjunto de todos os _tokens_ $\mathcal{X}$ de um modelo é chamado de vocabulário. <def:tokenization>
 
 {{% notice style="primary" title="Byte-pair encoding" %}}
-O algoritmo de _byte-pair encoding_ é a técnica de _tokenização_ utilizada pelo modelo GPT-2. O processo do algoritmo compreende em realizar agrupamentos de _tokens_ dois a dois até atingir um critério de parada 
+  O algoritmo de _byte-pair encoding_ é a técnica de _tokenização_ utilizada pelo modelo GPT-2. O processo do algoritmo compreende em realizar agrupamentos de _tokens_ dois a dois até atingir um critério de parada 
 
-Podemos, por exemplo, partir de um conjunto inicial de _tokens_ composto pelos caracteres do texto "banana":
-`b`, `a`, `n`, `a`, `n`, `a`. 
+  Podemos, por exemplo, partir de um conjunto inicial de _tokens_ composto pelos caracteres do texto "banana":
+  `b`, `a`, `n`, `a`, `n`, `a`. 
 
-Para cada iteração do algoritmo, contamos a frequência de todos os pares de _tokens_ adjacentes do texto, e substituímos o par mais frequente por um novo _token_ composto pela concatenação deles. No nosso caso, teríamos um texto tokenizado como `b` `a` `na` `na`.
+  Para cada iteração do algoritmo, contamos a frequência de todos os pares de _tokens_ adjacentes do texto, e substituímos o par mais frequente por um novo _token_ composto pela concatenação deles. No nosso caso, teríamos um texto tokenizado como `b` `a` `na` `na`.
 
-Repetimos o passo anterior até atingir o critério de parada (um critério plausível é atingir determinado número de _tokens_ no vocabulário).
+  Repetimos o passo anterior até atingir o critério de parada (um critério plausível é atingir determinado número de _tokens_ no vocabulário).
 {{% /notice %}}
 
 > **Definição (modelos autoregressivos [^BishopBishopDeepLearning2024])**.
@@ -49,7 +49,6 @@ Observações:
   - A **figura 1** ilustra a **definição de transformer**, mostrando os blocos de _encoder_ e _decoder_ da arquitetura de _transformer_. No entanto, o GPT (ilustrado na **figura 2**) se baseia em uma arquitetura que utiliza apenas o _decoder_ da arquitetura original. Isto porque o GPT mapeia os _tokens_ de uma sentença em um vetor de probabilidade para cada _token_ do vocabulário.
   - Nem todos os _transformers_ são _encoder-decoder_, já que essa arquitetura foi desenvolvida para situações em que desejamos mudar de um contexto para outro (isto é, temos uma tarefa Seq2Seq), como traduções. Para tarefas de classificação, por exemplo, utilizar apenas um _encoder_, enquanto em tarefas de geração de texto no mesmo um contexto, um _decoder_ pode ser suficiente.
 
-{{% bibliography %}}
 
 ## Componentes e técnicas
 
@@ -161,3 +160,5 @@ Observações:
 
   Por fim, realizamos um _unembedding_, que converte nosso fluxo residual em _logits_. Um _logit_ é um valor real que representa a propensão relativa de cada token do vocabulário ser o próximo na sequência. Para transformar esses _logits_ em probabilidades, aplicamos a função _softmax_, que normaliza os _logits_ para que a soma das probabilidades seja 1. Dessa forma, cada probabilidade resultante indica a chance de um _token_ específico ser o próximo na sequência, e escolhemos a forma de amostragem de modo que haja variabilidade.
 {{% /notice %}}
+
+{{% bibliography %}}
