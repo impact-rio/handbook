@@ -7,10 +7,10 @@ A arquitetura de _transformer_ [^VaswaniEtAlAttentionAll2017] revolucionou o cam
 
 ## Arquitetura
 
-A arquitetura de _transformer_ pode variar dependendo da tarefa a ser desempenhada. Nessas anotações, vamos escolher focar na arquitetura que serve de base para os modelos GPT [^RadfordEtAlImprovingLanguage2018] [^RadfordEtAlLanguageModels2019]. Nesse tipo de modelo, o objetivo central é prever qual seria o próximo _token_ (@def:tokenization) mais provável dada uma sequência de _tokens_, característica de modelos autoregressivos (@def:autoregressive-models).
+A arquitetura de _transformer_ pode variar dependendo da tarefa a ser desempenhada. Nessas anotações, vamos escolher focar na arquitetura que serve de base para os modelos GPT [^RadfordEtAlImprovingLanguage2018] [^RadfordEtAlLanguageModels2019]. Nesse tipo de modelo, o objetivo central é prever qual seria o próximo _token_ mais provável dada uma sequência de _tokens_, característica de modelos autoregressivos.
 
 > **Definição (Tokenização [^BishopBishopDeepLearning2024])**.
-A tokenização é o processo de transformar um texto em uma representação semântica compreendido como uma sequência de _tokens_. Os _tokens_ podem ser palavras, fragmentos de palavras, pontuações ou outros grupos de caracteres. O conjunto de todos os _tokens_ $\mathcal{X}$ de um modelo é chamado de vocabulário. <def:tokenization>
+A tokenização é o processo de transformar um texto em uma representação semântica compreendido como uma sequência de _tokens_. Os _tokens_ podem ser palavras, fragmentos de palavras, pontuações ou outros grupos de caracteres. O conjunto de todos os _tokens_ $\mathcal{X}$ de um modelo é chamado de vocabulário.
 
 {{% notice style="primary" title="Byte-pair encoding" %}}
   O algoritmo de _byte-pair encoding_ é a técnica de _tokenização_ utilizada pelo modelo GPT-2. O processo do algoritmo compreende em realizar agrupamentos de _tokens_ dois a dois até atingir um critério de parada 
@@ -31,7 +31,7 @@ A tokenização é o processo de transformar um texto em uma representação sem
   = p(x_1) \prod_{n = 2}^N p(x_n | x_1, ..., x_{n-1}).
 
 > **Definição (_transformer_ [^VaswaniEtAlAttentionAll2017])**.
-> A arquitetura original de _transformer_ possui uma estrutura _encoder-decoder_. O _encoder_ mapeia uma sequência de tokens $\mathbf{x} = (x_1, ..., x_n)$ em uma sequência de representações contínuas $\mathbf{z} = (z_1, ..., z_n)$, vetores de alta dimensão que capturam informações semânticas e contextuais dos _tokens_ de entrada em um espaço contínuo, que chamamos de _embedding_. A sequência $\mathbf{z}$ posteriormente é utilizada pelo _decoder_ para gerar uma sequência de _tokens_ de saída $\mathbf{y} = (y_1, ..., y_m)$ em conjunto a um novo _input_, geralmente em tarefas _seq2seq_. Essas operações são realizadas utilizando o mecanismo de atenção. <def:transformer>
+> A arquitetura original de _transformer_ possui uma estrutura _encoder-decoder_. O _encoder_ mapeia uma sequência de tokens $\mathbf{x} = (x_1, ..., x_n)$ em uma sequência de representações contínuas $\mathbf{z} = (z_1, ..., z_n)$, vetores de alta dimensão que capturam informações semânticas e contextuais dos _tokens_ de entrada em um espaço contínuo, que chamamos de _embedding_. A sequência $\mathbf{z}$ posteriormente é utilizada pelo _decoder_ para gerar uma sequência de _tokens_ de saída $\mathbf{y} = (y_1, ..., y_m)$ em conjunto a um novo _input_, geralmente em tarefas _seq2seq_. Essas operações são realizadas utilizando o mecanismo de atenção.
 
 Observações:
   - Tarefas _seq2seq_ são aquelas em que realizamos traduções de um contexto para outro, e dependemos da estrutura completa _encoder-decoder_. Exemplos de tarefas _seq2seq_ são a tradução de texto de uma linguagem para outra e resumo de textos, em que inserimos uma entrada no modelo e esperamos como saída uma versão resumida.
@@ -60,7 +60,6 @@ Observações:
   - Tabelas de consulta de _embeddings_ são obtidas a partir de modelos pré-treinados de _word embedding_, como o Word2Vec [^MikolovEtAlWord2Vec2013].
   - É esperado que o modelo consiga aprender a representar cada característica semântica de um _token_ em uma dimensão do espaço latente, como será discutido na @sec:superposition. No entanto, é possível que o modelo acabe representando um número maior de propriedades do que o número de dimensões do espaço latente, fenômeno conhecido como superposição [^elhage2022superposition]. 
 ]
-
 
 > **Definição (positional embedding)**.
 >  _Positional embedding_ é um _embedding_ adicional com informações posicionais de cada _token_ adicionado ao _embedding_ do texto.

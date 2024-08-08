@@ -22,7 +22,7 @@ Quando estudamos redes neurais profundas, nos deparamos quase certamente com gra
 {{% notice style="primary" title="Ativação pra cá, ativação pra lá" %}}
   O termo ativação é bastante utilizado pela comunidade de interpretabilidade em múltiplos contextos. Façamos uma desambiguação do termo para tornar a leitura deste _handbook_ mais clara:
 
-  - **Ativação como valor resultante de um _forward pass_**: representa a @def:activation. Trata-se de um valor associado à saída de um neurônio e repassado ao próximo, alterado a cada propagação.
+  - **Ativação como valor resultante de um _forward pass_**: trata-se de um valor associado à saída de um neurônio e repassado ao próximo, alterado a cada propagação.
 
   - **Função de ativação**: trata-se de uma função aplicada à combinação linear de entradas e pesos obtida pela saída de um neurônio. As funções de ativação introduzem não-linearidade no modelo, permitindo que aprendizado de padrões complexos. Podemos citar como exemplo as funções ReLU e sigmoide.
 
