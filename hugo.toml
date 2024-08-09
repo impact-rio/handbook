@@ -8,48 +8,20 @@ title = "Anotações sobre Mechanistic Interpretability em Transformers"
 
 [params]
   author.name = "Ana Carolinha Erthal & Juan Belieni"
-
-  # The social media image of your site.
-  # Default: not set
-  # This is used for generating social media meta information for the opengraph
-  # protocol and twitter cards.
-  # This can be overridden in the page's frontmatter.
-  images = [ "images/hero.png" ]
-
   themeVariant = [
   	{ identifier = "zen-auto",  name = "Tema automático", auto = [ "zen-light", "zen-dark" ] },
   	{ identifier = "zen-light", name = "Tema claro"},
   	{ identifier = "zen-dark",  name = "Tema escuro"},
   ]
 
-  # Hide the breadcrumbs.
-  # Default: false
-  # If the breadcrumbs are hidden, the title of the displayed page will still be
-  # shown in the topbar.
-  disableBreadcrumb = false
-
   editURL = "https://github.com/impact-rio/handbook/edit/main/content/${FilePath}"
-
-  # TODO. Check this options
-  # collapsibleMenu = true
-  # alwaysopen = ""
-
-  # Hide heading above the shortcut menu.
-  # Default: false
-  # The title for the heading can be overwritten in your i18n files. See Hugo's
-  # documentation how to do this.
-  disableShortcutsTitle = false
 
   disableSeoHiddenPages = true
   disableRootBreadcrumb = true
 
-  # Code
-
   disableInlineCopyToClipBoard = true
   disableHoverBlockCopyToClipBoard = true
   highlightWrap = true
-
-  # Math
 
   disableMathJax = false
 

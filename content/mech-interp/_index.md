@@ -1,5 +1,5 @@
 ---
-title: Mechanistic Intepretability
+title: 3. Mechanistic Intepretability
 weight: 3
 ---
 
