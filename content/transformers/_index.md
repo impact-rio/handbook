@@ -1,6 +1,7 @@
 ---
 title: 2. Transformers e atenção
 weight: 2
+aliases: 2
 ---
 
 A arquitetura de _transformer_ [^VaswaniEtAlAttentionAll2017] revolucionou o campo de processamento de linguagem natural (PLN) e de aprendizado profundo e, atualmente, é o estado-da-arte em tarefas de linguagem. Essa arquitetura é baseada no conceito de atenção, que permite ao modelo descobrir relações entre as diversas partes de um determinado texto.

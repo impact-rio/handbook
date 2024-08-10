@@ -1,6 +1,7 @@
 ---
 title: 3. Mechanistic Intepretability
 weight: 3
+aliases: 3
 ---
 
 A proposta da _mechanistic interpretability_ é, a partir de um modelo pré-treinado, utilizar ténicas de engenharia reversa para descobrir algoritmos aprendidos pelo modelo a partir de seus pesos. Esse tipo de investigação é realizada com o objetivo de compreender melhor como o modelo se comporta em certas situações.

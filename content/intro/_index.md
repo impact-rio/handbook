@@ -1,6 +1,7 @@
 ---
-title: Introdução
+title: 1. Introdução
 weight: 1
+aliases: 1
 ---
 
 Modelos de linguagem baseados em _transformers_ são considerados estado-da-arte para tarefas relacionadas à linguagem natural, tendo desencadeado uma corrida tecnológica entre as maiores empresas de tecnologia do mundo para o treinamento e aperfeiçoamento desses modelos. No entanto, pouco sabemos sobre o funcionamento e raciocínio interno desses modelos. Isto se dá pela natureza de arquiteturas de aprendizado profundo como a de _tranformers_, que possuem milhões, até bilhões, de parâmetros. 

@@ -1,6 +1,7 @@
 ---
 title: 4. Identificação de Objetos Indiretos (IOI)
 weight: 4
+aliases: 4
 ---
 
 Um circuito bastante conhecido no GPT-2 é o de identificação de objetos indiretos. Como o próprio nome indica, a tarefa performada por esse circuito consiste em completar objetos indiretos em sentenças. Por exemplo, na sentença `João e Maria fugiram para a floresta. João confiava em`, é esperado que o modelo complete-a com _token_ `Maria`.
