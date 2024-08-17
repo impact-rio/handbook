@@ -41,10 +41,10 @@ Observações:
   O entendimento de circuitos em _transformers_ se baseia fortemente no conhecimento das matrizes de pesos que servem de base para seu funcionamento.
   
   Seja um modelo de _multi-head attention_, ou seja, que realiza várias operações de atenção em paralelo ao mapear _embeddings_ intermediários da dimensão interna do modelo para a dimensão de _head_. Identificaremos objetos específicos de cada _head_ com um sobrescrito $(dot)^h$. Seja, também,
-  - $d_"model"$ a dimensão interna do modelo;
-  - $d_"head"$ a dimensão de cada _head_ do modelo, normalmente definido como $d_"head" = d_"model" / n_"head"$, onde $n_"head"$ é o número de _heads_;
-  - $d_"vocab"$ a dimensão do vocabulário;
-  - $n_"ctx"$ o número máximo de _tokens_ que o modelo consegue processar (janela de contexto);
+  - $d_\text{model}$ a dimensão interna do modelo;
+  - $d_\text{head}$ a dimensão de cada _head_ do modelo, normalmente definido como $d_\text{head} = d_\text{model} / n_\text{head}$, onde $n_\text{head}$ é o número de _heads_;
+  - $d_\text{vocab}$ a dimensão do vocabulário;
+  - $n_\text{ctx}$ o número máximo de _tokens_ que o modelo consegue processar (janela de contexto);
   - $W^h_K \in \mathbb{R}^{d_\text{model} \times d_\text{head}}$ a matriz de pesos para as _keys_;
   - $W^h_Q \in \mathbb{R}^{d_\text{model} \times d_\text{head}}$ a matriz de pesos para as _queries_;
   - $W^h_V \in \mathbb{R}^{d_\text{model} \times d_\text{head}}$ a matriz de pesos para os _values_;

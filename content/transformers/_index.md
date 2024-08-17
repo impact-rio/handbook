@@ -113,7 +113,7 @@ Observações:
   Atenção é uma função que mapeia uma _query_ e pares de _key-value_ em uma saída, calculada como a soma ponderada dos valores por uma medida de compatibilidade da _query_ com a _key_ correspondente.
   A função de atenção mais utilizada em _transformers_ é a atenção do produto escalonado, definida como:
   $$
-  \text{Attention}(Q, K, V) = \text{softmax}((Q K^T) / \sqrt(d_k)) V.
+  \text{Attention}(Q, K, V) = \text{softmax} \left( \frac {Q K^T} {\sqrt{d_k}} \right) V.
   $$
 
 Observações:
