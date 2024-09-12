@@ -14,8 +14,8 @@ Nesse capítulo, trataremos simultaneamente do circuito de Identificação de Ob
 
 ## Técnicas para identificações de circuitos
 
-> **Definição (atribuição direta de _logits_)**.
-> Aplicação de um _unembedding_ e _LayerNorm_ (normalização da saída de uma camada) diretamente ao _output_ de um nó, realizada com objetivo de compreender a contribuição de cada nó para a predição do próximo _token_.]
+> **Definição (Atribuição Direta de _Logits_ (DLA))**.
+> Aplicação de um _unembedding_ e _LayerNorm_ (normalização da saída de uma camada) diretamente ao _output_ de um nó, realizada com objetivo de compreender a contribuição de cada nó para a predição do próximo _token_.
 
 Observações:
   - No contexto de IOI, utilizamos a atribuição direta à diferença de _logits_.
@@ -23,18 +23,18 @@ Observações:
   - O DLA não leva em conta que nós posteriores dependem dos anteriores, e _outputs_ de nós iniciais podem ser desconsiderados por nós posteriores, e portanto ter pouca ou nenhuma significância para o resultado final. 
   - É considerado um processo de _denoising_, pois removemos ruído ao decompor as saídas em contribuições de cada nó e analisar quais são mais relevantes.
 
-> **Definição (_patching_ de ativações [^meng2022activationpatching])**.
+> **Definição (_Patching_ de ativações [^meng2022activationpatching])**.
 > O _Patching_ de ativações é o processo de submeter o modelo a uma execução correta, em que obtemos uma predição de _token_ certa, e uma execução corrompida, em que não obtemos o _token_ certo. Posteriormente, há uma intervenção na execução corrompida em alguma ativação para inserção (_patching_) da ativação equivalente da execução correta. Ao final, mede-se o impacto da mudança na predição de _tokens_.
 
 Observações:
 - É considerado um processo de _noising_, pois adicionamos ruído ao experimentar diferentes _patchings_ e avaliar o efeito na probabilidade do _token_ correto.
 - Podemos realizar _patching_ em _heads_ de atenção, em uma MLP, ou mesmo em valores do fluxo residual.
-- No contexto de IOI, podemos considerar uma execução correta `João e Maria foram à floresta. João deu um pão a`, e uma execução corrompida `João e Maria foram à floresta. Maria deu um pão a`. Realizar um _patching_ de ativação nos permite compreender que partes do modelo estão corretamente identificando objetos indiretos
+- No contexto de IOI, podemos considerar uma execução correta `João e Maria foram à floresta. João deu um pão a Maria`, e uma execução corrompida `João e Maria foram à floresta. João deu um pão a João`. Realizar um _patching_ de ativação nos permite compreender que partes do modelo estão corretamente identificando objetos indiretos
 
 > ![](../img/activation-patching.png)
 > Processo corrompido inicial e _patching_ de ativação do processo correto no processo corrompido.
 
-> **Definição (_patching_ de conexões)**.
+> **Definição (_Patching_ de conexões)**.
 > Processo de submeter o modelo a uma execução correta, em que obtemos uma predição de _token_ certa, e uma execução corrompida, em que não obtemos o _token_ certo. Posteriormente, há uma intervenção na execução corrompida em alguma interação entre ativações (uma aresta) para inserção (_patching_) da conexão equivalente da execução correta. Ao final, mede-se o impacto da mudança na predição de _tokens_.
 
 Observações:
@@ -47,14 +47,14 @@ Observações:
 
 ## Funcionamento do circuito de IOI
 
-Através daas técnicas apresentadas anteriormente, foi possível compreender o funcionamento do circuito de IOI [^wang2022ioi]. Agora, traremos uma visão intuitiva do processo.
+Através das técnicas apresentadas anteriormente, foi possível compreender o funcionamento do circuito de IOI [^wang2022ioi]. Agora, traremos uma visão intuitiva do processo.
 
 Vamos retomar a analogia da [seção de Transformers de atenção](../transformers). Imagine, novamente, a fila de pessoas em que cada um possui um _token_, e seu objetivo é descobrir o _token_ da pessoa a sua frente. Retomamos as mesmas regras para realizar perguntas: cada pessoa pode passar perguntas para quem está atrás de si na fila e nunca para frente, e qualquer um atrás pode escolher responder, passando informação para quem fez a pergunta. 
 
 Teremos agora a  frase `João e Maria foram a floresta. João deu um pão para Maria`. Nesse caso, como tratamos de Identificação de Objeto Indireto, a pessoa que possui o _token_ `para` precisa concluir que o _token_ a sua frente é `Maria`. 
 
 -  Cada pessoa na fila representa um vetor no fluxo residual. Inicialmente, só possuem informações do seu próprio _token_, mas conforme perguntam e recebem respostas passam a armazenar mais informações.
-- A operação executada por um _head_ de atenção é representada por um par pergunta-resposta, onde a pergunta representa a query, quem responderá é determinado pela _key_ e a resposta será o _value_
+- A operação executada por um _head_ de atenção é representada por um par pergunta-resposta, onde a pergunta representa a query, quem responderá é determinado pela _key_ e a resposta será o _value_.
 
 Agora podemos partir para o circuito IOI. Cada _bullet_ representa uma classe de _heads_ de atenção que faz parte da identificação do circuito:
  - **_Heads_ de _tokens_ duplicados**: a pessoa com o segundo _token_ `João` pergunta "Alguém mais tem um _token_ `João`?" e recebe a resposta do primeiro _token_ `João`, assim como sua posição. Agora ele sabe que o seu _token_ é repetido e também a localização da primeira ocorrência.

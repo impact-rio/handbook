@@ -34,13 +34,13 @@ Observações:
   - Por exemplo, _scores_ de atenção (i.e., o produto escalado por $d_k$ entre as _queries_ e as _keys_) são ativações.
   - É importante distinguir ativações de parâmetros (que são os pesos e vieses aprendidos durante o treinamento e não mudam dependendo da entrada.).
 
-> **Definição (circuito [^olah2020zoom])**.
+> **Definição (Circuito [^olah2020zoom])**.
 > Um circuito é um sub-grafo de uma rede neural que consiste em um conjunto de propriedades intimamente ligadas com seus pesos.
 
 {{% notice style="primary" title="Matrizes de pesos de _transformers_" %}}
   O entendimento de circuitos em _transformers_ se baseia fortemente no conhecimento das matrizes de pesos que servem de base para seu funcionamento.
   
-  Seja um modelo de _multi-head attention_, ou seja, que realiza várias operações de atenção em paralelo ao mapear _embeddings_ intermediários da dimensão interna do modelo para a dimensão de _head_. Identificaremos objetos específicos de cada _head_ com um sobrescrito $(dot)^h$. Seja, também,
+  Seja um modelo de _multi-head attention_, ou seja, que realiza várias operações de atenção em paralelo ao mapear _embeddings_ intermediários da dimensão interna do modelo para a dimensão de _head_. Identificaremos objetos específicos de cada _head_ com um sobrescrito ${(\cdot)}^h$. Seja, também,
   - $d_\text{model}$ a dimensão interna do modelo;
   - $d_\text{head}$ a dimensão de cada _head_ do modelo, normalmente definido como $d_\text{head} = d_\text{model} / n_\text{head}$, onde $n_\text{head}$ é o número de _heads_;
   - $d_\text{vocab}$ a dimensão do vocabulário;
@@ -51,7 +51,7 @@ Observações:
   - $W^h_O \in \mathbb{R}^{d_\text{head} \times d_\text{model}}$ a matriz de pesos para a saída;
   - $W^h_E \in \mathbb{R}^{d_\text{vocab} \times d_\text{model}}$ a matriz de pesos para _embedding_;
   - $W^h_U \in \mathbb{R}^{d_\text{model} \times d_\text{vocab}}$ a matriz de pesos para _unembedding_;
-  - $W_\text{pos} \in \mathbb{R}^(n_\text{ctx} \times d_\text{model})$ a matriz de pesos para _positional embedding_.
+  - $W_\text{pos} \in \mathbb{R}^{n_\text{ctx} \times d_\text{model}}$ a matriz de pesos para _positional embedding_.
 
   Temos as seguintes matrizes:
   - $W^h_\text{OV} \in \mathbb{R}^{d_\text{model} \times d_\text{model}} = W^h_V W^h_O$, que descreve qual informação se move da fonte até o destino no fluxo residual. Chamaremos de *circuito OV*.
@@ -67,7 +67,7 @@ Observações:
 
 ## _Heads_ e circuitos de indução
 
-> **Definição (attention patterns)**.
+> **Definição (Attention patterns)**.
   Comportamentos que observamos em _heads_ de atenção que descrevem o tipo de relação entre _tokens_ capturadas por um _head_. Destacam-se os seguintes padrões:
 >   - **_Head_ de _token_ anterior**: voltam a atenção ao _token_ anterior na sequência;
 >   - **_Head_ de _token_ atual**: voltam a atenção ao próprio _token_ na sequência;
@@ -91,22 +91,22 @@ Observações:
   Note que a biblioteca TransformerLens facilita a exploração e visualização dos padrões, e também sua detecção. Detectar automaticamente o padrão de _attention heads_ nos ajuda a quantificar nossas observações sobre processos internos do modelo.
 {{% /notice %}}
 
-> **Definição (_heads_ de indução)**.
+> **Definição (_Heads_ de indução)**.
 > _Heads_ de indução são _heads_ de atenção que realizam um padrão específico, procurando na janela de contexto por exemplos do _token_ atual. Quando o encontram, replicam o próximo _token_ do contexto.
 
 Observações:
   - Na prática, _heads_ desse tipo fazem induções da forma `[a][b] … [a] → [b]`.
   - Não é possível ter _heads_ de indução em modelos de uma camada.
-  - Em modelos com _heads_ de indução, dada uma sequência repetida de _tokens_, o modelo consegue prever a segunda parte da sequência. A @fig:repeated-seq mostra a melhora da habilidade de predição no momento em que a sequência de _tokens_ começa a se repetir:
+  - Em modelos com _heads_ de indução, dada uma sequência repetida de _tokens_, o modelo consegue prever a segunda parte da sequência. A Figura 1 mostra a melhora da habilidade de predição no momento em que a sequência de _tokens_ começa a se repetir:
 
 > ![](/handbook/img/repeated_seq.png)
-> Gráfico da log-probabilidade do _token_ correto por posição em uma sequência com repetição completa de _tokens_
+> **Figura 1**. Gráfico da log-probabilidade do _token_ correto por posição em uma sequência com repetição completa de _tokens_
 
 Observações:
   - A observação de _heads_ de indução passa a ocorrer conforme aumentamos a escala do modelo. Para 2 bilhões de _tokens_ há ausência de _heads_ de indução e em 4 bilhões observamos essa capacidade muito bem desenvolvida. Chamamos desenvolvimentos repentinos como esse de capacidade emergente [^wei2022emergent-abilities].
   - Capacidades emergentes são bastante interessantes, mas trazem preocupações no ramo de alinhamento de IA, já que são características que não podem ser previstas treinando modelos de pequena escala. O assunto é pauta de muitos estudos, já que existe discordância se a observação dessas características é fruto da utilização de métricas descontínuas [^schaeffer2023emergent-habilities-mirage].
 
-> **Definição (circuito de indução)**.
+> **Definição (Circuito de indução)**.
 > Um circuito de indução é (normalmente) composto pela composição das seguintes _heads_:
 >   1. Uma _head_ de _token_ anterior, chamado de circuito QK de _token_ anterior.
 >   2. Uma _head_ de indução que possui os dois seguintes mecanismos:
